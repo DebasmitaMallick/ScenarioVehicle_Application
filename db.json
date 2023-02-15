@@ -1,0 +1,18 @@
+{
+  "scenarios": [
+    {
+      "id": 205,
+      "name": "SC1",
+      "time": "3",
+      "vehicles": [{
+        "name" : "test"
+      }]
+    },
+    {
+      "id": 227,
+      "name": "SC2",
+      "time": "4",
+      "vehicles": []
+    }
+  ]
+}

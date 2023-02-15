@@ -1,0 +1,15 @@
+body {
+    color: var(--white);
+}
+.scenario {
+    display: flex;
+    margin: 78px;
+    padding: 63px;
+    background: var(--dark);
+    box-sizing: border-box;
+}
+
+.name, .time {
+    flex: 1
+}
+  

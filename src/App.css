@@ -1,38 +1,49 @@
+:root {
+  --green : #4CAF50; 
+  --orange : #ffa500;
+  --white : #ffffff;
+  --dark : #4f4f51;
+  --darkgrey : #2c2b2b;
+  --grey : #b3b3b3;
+  --black : #000000;
+}
+
+body {
+  background: var(--black);
+}
 .App {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+input, select, option {
+  /* width: -webkit-fill-available; */
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #b3b3b3;
+  border-radius: 4px;
+  box-sizing: border-box;
+  background: var(--darkgrey);
+  color: var(--white);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.button {
+  border: none;
+  border-radius: 5px;
+  color: var(--white);
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  margin: 2px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.add-btn {
+  background: var(--green);
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.reset-btn {
+  background: var(--orange);
 }

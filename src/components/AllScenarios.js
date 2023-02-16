@@ -1,23 +1,18 @@
 import React, {useEffect, useState} from 'react';
 import './allScenario.css';
+import ScenarioItem from './ScenarioItem';
 
 function AllScenarios() {
-    const [scenarios, setScenarios] = useState([])
-    const [vehicles, setVehicles] = useState([])
+    const [scenarios, setScenarios] = useState([]);
+    const [isRefresh, setIsRefresh] = useState(true);
     useEffect(() => {
         fetch('http://localhost:3001/scenarios')
         .then((res) => res.json())
         .then((res) => {
             setScenarios(res);
         })
-    }, []);
-    useEffect(() => {
-        fetch('http://localhost:3001/vehicles')
-        .then((res) => res.json())
-        .then((res) => {
-            setVehicles(res);
-        })
-    }, []);
+    }, [isRefresh]);
+
     return (
         <>
             <div id='all-scenarios'>
@@ -29,20 +24,16 @@ function AllScenarios() {
                             <th>Scenario Name</th>
                             <th>Scenario Time</th>
                             <th>Number of Vehicles</th>
-                            {/* <th>Add Vehicles</th>
+                            <th>Add Vehicles</th>
                             <th>Edit</th>
-                            <th>Delete</th> */}
+                            <th>Delete</th>
                         </tr>
                     </thead>
                     <tbody>
                     {
                         scenarios.map(sc => {
                             return (
-                                <tr key={sc.id}>
-                                    <td>{sc.id}</td>
-                                    <td>{sc.name}</td>
-                                    <td>{sc.time}</td>
-                                </tr>
+                                <ScenarioItem key={sc.id} scenario = {sc} refresh = {setIsRefresh} />
                             )
                         })
                     }

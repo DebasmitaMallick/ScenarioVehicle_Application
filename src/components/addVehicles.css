@@ -4,7 +4,7 @@ body {
 
 .grid-container {
     display: grid;
-    grid-template-columns: auto auto auto;
+    /* grid-template-columns: auto auto auto; */
     padding: 10px;
 }
 .grid-item {
@@ -22,6 +22,7 @@ select option {
 }
 
 .add-vehicle-form {
+    grid-template-columns: auto auto auto;
     margin: 78px;
     padding: 63px;
     background: var(--dark);

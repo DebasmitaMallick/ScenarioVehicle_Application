@@ -6,6 +6,8 @@
   --darkgrey : #2c2b2b;
   --grey : #b3b3b3;
   --black : #000000;
+  --red : #e90303;
+  --yellow : #ffa500;
 }
 
 body {
@@ -46,4 +48,28 @@ input, select, option {
 
 .reset-btn {
   background: var(--orange);
+}
+
+.close-btn {
+  background-color: var(--red);
+}
+
+.trash-icon:hover {
+  color: var(--red);
+}
+
+.edit-icon:hover {
+  color: var(--yellow);
+}
+
+.add-icon:hover {
+  color: var(--green);
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
 }

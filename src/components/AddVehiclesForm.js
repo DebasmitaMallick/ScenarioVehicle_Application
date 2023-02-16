@@ -1,9 +1,12 @@
 import React, {useEffect, useState} from 'react'
+import { useLocation } from 'react-router-dom';
 import './addVehicles.css';
 
 function AddVehiclesForm() {
+  const location = useLocation();
+  console.log(location.state);
   const [scenarios, setScenarios] = useState([]);
-  const [scenario, setScenario] = useState('');
+  const [scenario, setScenario] = useState(location.state ? location.state : '');
   const [vehicleName, setVehicleName] = useState('');
   const [speed, setSpeed] = useState('');
   const [positionX, setPositionX] = useState('');
@@ -12,7 +15,7 @@ function AddVehiclesForm() {
 
     const submitHandler = (e) => {
       e.preventDefault();
-      // fetch(`http://localhost:3001/scenarios/${scenario}/vehicles`, {
+      //fetch(`http://localhost:3001/scenarios/${scenario}/vehicles`, {
       fetch('http://localhost:3001/scenarios', {
         method: 'POST',
         body: JSON.stringify({

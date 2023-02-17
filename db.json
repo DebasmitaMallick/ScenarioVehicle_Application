@@ -4,15 +4,69 @@
       "id": 205,
       "name": "SC1",
       "time": "3",
-      "vehicles": [{
-        "name" : "test"
-      }]
+      "vehicles": [
+        {
+          "id": 124,
+          "name": "test",
+          "speed": "4",
+          "positionX": "6",
+          "positionY": "8",
+          "direction": "upwards"
+        },
+        {
+          "id": 104,
+          "name": "testx",
+          "speed": "4",
+          "positionX": "60",
+          "positionY": "8",
+          "direction": "downwards"
+        }
+      ]
     },
     {
-      "id": 227,
+      "id": 509,
       "name": "SC2",
-      "time": "4",
-      "vehicles": []
+      "time": "3",
+      "vehicles": [
+        {
+          "id": 177,
+          "name": "Hest",
+          "speed": "4",
+          "positionX": "6",
+          "positionY": "8",
+          "direction": "upwards"
+        }
+      ]
+    },
+    {
+      "id": 409,
+      "name": "SC3",
+      "time": "3",
+      "vehicles": [
+        {
+          "id": 924,
+          "name": "Hest",
+          "speed": "4",
+          "positionX": "6",
+          "positionY": "8",
+          "direction": "upwards"
+        }
+      ]
+    },
+    {
+      "id": 209,
+      "name": "SC4",
+      "time": "3",
+      "vehicles": [
+        {
+          "id": 777,
+          "name": "Hest",
+          "speed": "4",
+          "positionX": "6",
+          "positionY": "8",
+          "direction": "upwards"
+        }
+      ]
     }
   ]
 }

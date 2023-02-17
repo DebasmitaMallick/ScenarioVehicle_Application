@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import './addScenario.css';
+import axios from "axios";
 
 function AddScenarioForm() {
     const [scenarioName, setScenarioName] = useState('');
@@ -7,20 +8,17 @@ function AddScenarioForm() {
 
     const submitHandler = e => {
         e.preventDefault();
-        fetch('http://localhost:3001/scenarios', {
-        method: 'POST',
-        body: JSON.stringify({
+
+        axios
+        .post('http://localhost:3001/scenarios', {
             id: Math.floor(Math.random()*1000),
             name: scenarioName,
             time: scenarioTime,
             vehicles: []
-        }),
-        headers: {
-            'Content-type': 'application/json; charset=UTF-8',
-        },
         })
-        .then((response) => response.json())
-        .then((json) => console.log(json));
+        .then((response) => {
+            console.log(response.data);
+        });
     };
 
     const resetHandler = e => {
@@ -43,8 +41,8 @@ function AddScenarioForm() {
                     </label>
 
                 </div>
-                <button className='button add-btn' type='submit'>Add</button>
-                <button className='button reset-btn' onClick={resetHandler}>Reset</button>
+                <button className='button green-btn' type='submit'>Add</button>
+                <button className='button orange-btn' onClick={resetHandler}>Reset</button>
             </form>
         </>
     )

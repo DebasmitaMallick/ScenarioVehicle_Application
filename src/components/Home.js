@@ -3,11 +3,32 @@ import axios from 'axios';
 import VehicleItem from './VehicleItem';
 import ScenarioDropdown from './ScenarioDropdown';
 import './scenarioStyles.css';
+import { toast } from 'react-toastify';
+import DeleteAlert from './DeleteAlert';
 
 function Home() {
   const [scenarios, setScenarios] = useState([]);
   const [scenario, setScenario] = useState('');
   const [vehicles, setVehicles] = useState([]);
+  const [isRefresh, setIsRefresh] = useState(Math.random()*100);
+
+  const confirmDelete = () => {
+    toast.warning(<DeleteAlert delete = {deleteAllHandler} message = {'Are you sure you want to delete the scenarios?'} /> , {position: toast.POSITION.TOP_CENTER, closeButton: false});
+  };
+
+  const deleteAllHandler = () => {
+    // axios.delete(`http://localhost:3001/scenarios/${sc.id}`)
+    // .then(() => {
+    //     toast.success('Deleted Successfully', {position: toast.POSITION.TOP_CENTER, autoClose: 3000});
+    //     props.refresh(Math.random()*100);
+    // });
+    axios.get(`http://localhost:3001/scenarios`, {
+      params: {
+        id: 205
+
+      }
+    })
+}
 
   useEffect(() => {
       axios.get('http://localhost:3001/scenarios').then((response) => {
@@ -45,7 +66,7 @@ function Home() {
               {
                   vehicles.map(vehicle => {
                       return (
-                          <VehicleItem key={vehicle.id} vehicle = {vehicle}  />
+                          <VehicleItem key={vehicle.id} vehicle = {vehicle} delete = {confirmDelete}  />
                       )
                   })
               }

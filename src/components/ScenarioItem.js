@@ -13,9 +13,10 @@ function ScenarioItem(props) {
     const [time, setTime] = useState(props.scenario.time);
     const [prevName, setPrevName] = useState(props.scenario.name);
     const [prevTime, setPrevTime] = useState(props.scenario.time);
+    const appUrl = process.env.REACT_APP_APP_URL;
 
     const deleteScenario = () => {
-        axios.delete('http://localhost:3001/scenarios/'+props.scenario.id)
+        axios.delete(`${appUrl}/scenarios/`+props.scenario.id)
         .then(() => {
             toast.success('Deleted Successfully', {position: toast.POSITION.TOP_CENTER, autoClose: 3000});
             props.refresh(Math.random()*100);
@@ -29,7 +30,7 @@ function ScenarioItem(props) {
     const editScenario = () => {
         if(name != prevName || time != prevTime) {
             axios
-            .patch(`http://localhost:3001/scenarios/${props.scenario.id}`, {
+            .patch(`${appUrl}/scenarios/${props.scenario.id}`, {
                 name: name,
                 time: time
             }).then(() => {

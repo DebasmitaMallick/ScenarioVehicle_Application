@@ -14,11 +14,12 @@ function AddVehiclesForm() {
   const [positionX, setPositionX] = useState('');
   const [positionY, setPositionY] = useState('');
   const [direction, setDirection] = useState('');
+  const appUrl = process.env.REACT_APP_APP_URL;
 
     const submitHandler = (e) => {
       e.preventDefault();
       //fetch(`http://localhost:3001/scenarios/${scenario}/vehicles`, {
-      fetch('http://localhost:3001/scenarios', {
+      fetch(`${appUrl}/scenarios`, {
         method: 'POST',
         body: JSON.stringify({
             id: Math.floor(Math.random()*1000),
@@ -47,7 +48,7 @@ function AddVehiclesForm() {
     }
   
     useEffect(() => {
-        axios.get('http://localhost:3001/scenarios').then((response) => {
+        axios.get(`${appUrl}/scenarios`).then((response) => {
             setScenarios(response.data);
           });
     }, []);

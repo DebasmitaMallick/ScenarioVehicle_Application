@@ -10,9 +10,10 @@ import axios from 'axios';
 function AllScenarios() {
     const [scenarios, setScenarios] = useState([]);
     const [isRefresh, setIsRefresh] = useState(Math.random()*100);
+    const appUrl = process.env.REACT_APP_APP_URL;
 
     useEffect(() => {
-        axios.get('http://localhost:3001/scenarios').then((response) => {
+        axios.get(`${appUrl}/scenarios`).then((response) => {
             setScenarios(response.data);
           });
     }, [isRefresh]);
@@ -25,7 +26,7 @@ function AllScenarios() {
 
     const deleteAllHandler = () => {
         let urls = scenarios.map((sc) => {
-            return `http://localhost:3001/scenarios/${sc.id}`
+            return `${appUrl}/scenarios/${sc.id}`
         });
         let deleteAllRequests = urls.map((url) => axios.delete(url));
         axios.all(deleteAllRequests).then((responses) => {

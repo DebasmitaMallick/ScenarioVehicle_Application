@@ -67,18 +67,6 @@
           "direction": "upwards"
         }
       ]
-    },
-    {
-      "id": 254,
-      "name": "Files",
-      "time": "45",
-      "vehicles": []
-    },
-    {
-      "id": 998,
-      "name": "Resets123",
-      "time": "56",
-      "vehicles": []
     }
   ]
 }

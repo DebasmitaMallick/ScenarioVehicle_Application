@@ -8,15 +8,16 @@ function Home() {
   const [scenarios, setScenarios] = useState([]);
   const [scenario, setScenario] = useState('');
   const [vehicles, setVehicles] = useState([]);
+  const appUrl = process.env.REACT_APP_APP_URL;
 
   useEffect(() => {
-      axios.get('http://localhost:3001/scenarios').then((response) => {
+      axios.get(`${appUrl}/scenarios`).then((response) => {
           setScenarios(response.data);
         });
   }, []);
 
   useEffect(() => {
-      axios.get('http://localhost:3001/scenarios/'+scenario).then((response) => {
+      axios.get(`${appUrl}/scenarios/`+scenario).then((response) => {
           setVehicles(response.data.vehicles);
         });
   }, [scenario]);

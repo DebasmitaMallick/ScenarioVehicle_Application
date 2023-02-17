@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react'
 import { useLocation } from 'react-router-dom';
 import './addVehicles.css';
 import axios from 'axios';
+import ScenarioDropdown from './ScenarioDropdown';
 
 function AddVehiclesForm() {
   const location = useLocation();
@@ -73,14 +74,15 @@ function AddVehiclesForm() {
     <>
       <form onSubmit={submitHandler}>
         <div className="grid-container add-vehicle-form">
-          <label className='grid-item name'>Scenario List <br />
+          {/* <label className='grid-item name'>Scenario List <br />
             <select value={scenario} onChange={e => setScenario(e.target.value)}>
               <option value="" disabled selected hidden>Select a Scenario</option>
                 {scenarios.map((option) => (
                   <option key={option.id} value={option.id}>{option.name}</option>
                 ))}
             </select>
-          </label>
+          </label> */}
+          <ScenarioDropdown scenarios={scenarios} setScenario = {setScenario} />
           <label className='grid-item name'>Vehicle Name <br />
               <input type="text" placeholder='Test Scenario' value={vehicleName} onChange={e => setVehicleName(e.target.value)} required />
           </label>

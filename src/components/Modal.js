@@ -12,8 +12,8 @@ function Modal(props) {
                 </div>
                 <div className="modal-body">{props.children}</div>
                 <div className="modal-footer">
-                    <button className='button add-btn' onClick={props.handleSave}>Save</button>
-                    <button onClick={props.onClose} className="button close-btn">
+                    <button className='button green-btn' onClick={props.handleSave}>Save</button>
+                    <button onClick={props.onClose} className="button red-btn">
                         Close
                     </button>
                 </div>

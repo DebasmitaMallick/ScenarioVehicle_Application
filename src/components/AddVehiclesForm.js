@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import { useLocation } from 'react-router-dom';
 import './addVehicles.css';
+import axios from 'axios';
 
 function AddVehiclesForm() {
   const location = useLocation();
@@ -33,6 +34,8 @@ function AddVehiclesForm() {
         .then((response) => response.json())
         .then((json) => console.log(json));
     }
+
+    
     const resetHandler = e => {
       setScenario('');
       setVehicleName('');
@@ -41,12 +44,11 @@ function AddVehiclesForm() {
       setPositionY('');
       setDirection('');
     }
+  
     useEffect(() => {
-        fetch('http://localhost:3001/scenarios')
-        .then((res) => res.json())
-        .then((res) => {
-            setScenarios(res);
-        })
+        axios.get('http://localhost:3001/scenarios').then((response) => {
+            setScenarios(response.data);
+          });
     }, []);
 
   const directions = [
@@ -100,8 +102,8 @@ function AddVehiclesForm() {
             </select>
           </label>
         </div>
-        <button className='button add-btn' type='submit'>Add</button>
-        <button className='button reset-btn' onClick={resetHandler}>Reset</button>
+        <button className='button green-btn' type='submit'>Add</button>
+        <button className='button orange-btn' onClick={resetHandler}>Reset</button>
       </form>
     </>
   )

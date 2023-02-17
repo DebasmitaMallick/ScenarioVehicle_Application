@@ -8,6 +8,7 @@
   --black : #000000;
   --red : #e90303;
   --yellow : #ffa500;
+  --blue : #4f99ff;
 }
 
 body {
@@ -42,16 +43,20 @@ input, select, option {
   margin: 2px;
 }
 
-.add-btn {
+.green-btn {
   background: var(--green);
 }
 
-.reset-btn {
+.orange-btn {
   background: var(--orange);
 }
 
-.close-btn {
+.red-btn {
   background-color: var(--red);
+}
+
+.blue-btn {
+  background-color: var(--blue);
 }
 
 .trash-icon:hover {
@@ -72,4 +77,31 @@ input, select, option {
 
 a {
   color: inherit;
+}
+
+#scenarios, #vehicles {
+    
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#scenarios td, #scenarios th, #vehicles td, #vehicles th {
+  padding: 15px;
+}
+
+#scenarios tr, #vehicles tr{
+  background-color: #f2f2f2;
+  color: var(--black);
+  border: 1px solid var(--black); 
+}
+
+#scenarios tr:hover, #vehicles tr:hover {background-color: #ddd;}
+
+#scenarios th, #vehicles th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  background-color: var(--dark);
+  color: white;
 }

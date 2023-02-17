@@ -4,24 +4,7 @@
       "id": 205,
       "name": "SC1",
       "time": "3",
-      "vehicles": [
-        {
-          "id": 124,
-          "name": "test",
-          "speed": "4",
-          "positionX": "6",
-          "positionY": "8",
-          "direction": "upwards"
-        },
-        {
-          "id": 104,
-          "name": "testx",
-          "speed": "4",
-          "positionX": "60",
-          "positionY": "8",
-          "direction": "downwards"
-        }
-      ]
+      "vehicles": [124 ,104]
     },
     {
       "id": 509,
@@ -79,6 +62,24 @@
       "name": "Resets123",
       "time": "56",
       "vehicles": []
+    }
+  ],
+  "vehicles": [
+    {
+      "id": 124,
+      "name": "test",
+      "speed": "4",
+      "positionX": "6",
+      "positionY": "8",
+      "direction": "upwards"
+    },
+    {
+      "id": 104,
+      "name": "testx",
+      "speed": "4",
+      "positionX": "60",
+      "positionY": "8",
+      "direction": "downwards"
     }
   ]
 }

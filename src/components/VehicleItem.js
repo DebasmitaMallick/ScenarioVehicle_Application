@@ -11,7 +11,7 @@ function VehicleItem(props) {
             <td>{props.vehicle.speed}</td>
             <td>Edit</td>
             {/* <td className='pointer' onClick={() => setShowEditModal(true)}><FaPencilAlt className='edit-icon' /></td> */}
-            {/* <td className='pointer' onClick={props.confirmDelete}><FaTrash className='trash-icon' /></td> */}
+            <td className='pointer' onClick={props.delete}><FaTrash className='trash-icon' /></td>
             {/* <Modal title='Edit Vehicle' onClose={() => setShowEditModal(false)} show={showEditModal} handleSave={editScenario} >
                 <ScenarioEditBody name={name} time={time} setName = {setName} setTime = {setTime} />
             </Modal> */}

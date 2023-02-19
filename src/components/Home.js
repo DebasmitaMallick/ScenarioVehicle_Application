@@ -45,18 +45,18 @@ function Home() {
   }, []);
 
   useEffect(() => {
-    axios.get(`${appUrl}/scenarios/` + scenario).then((response) => {
+    axios.get(`${appUrl}/vehicles`).then((response) => {
       setVehicles(response.data.vehicles);
     });
   }, [scenario]);
 
   if (!(Array.isArray(vehicles) && vehicles.length > 0)) {
-    return <ScenarioDropdown scenarios={scenarios} setScenario={setScenario} />;
+    return <ScenarioDropdown scenario = {scenario} scenarios={scenarios} setScenario={setScenario} />;
   }
 
   return (
     <>
-      <ScenarioDropdown scenarios={scenarios} setScenario={setScenario} />
+      <ScenarioDropdown scenario = {scenario} scenarios={scenarios} setScenario={setScenario} />
       <div>
         <table id="vehicles">
           <thead>

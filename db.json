@@ -4,64 +4,13 @@
       "id": 205,
       "name": "SC1",
       "time": "3",
-      "vehicles": [124 ,104]
+      "vehicles": [124, 104]
     },
     {
       "id": 509,
       "name": "SC2",
       "time": "3",
-      "vehicles": [
-        {
-          "id": 177,
-          "name": "Hest",
-          "speed": "4",
-          "positionX": "6",
-          "positionY": "8",
-          "direction": "upwards"
-        }
-      ]
-    },
-    {
-      "id": 409,
-      "name": "SC3",
-      "time": "3",
-      "vehicles": [
-        {
-          "id": 924,
-          "name": "Hest",
-          "speed": "4",
-          "positionX": "6",
-          "positionY": "8",
-          "direction": "upwards"
-        }
-      ]
-    },
-    {
-      "id": 209,
-      "name": "SC4",
-      "time": "3",
-      "vehicles": [
-        {
-          "id": 777,
-          "name": "Hest",
-          "speed": "4",
-          "positionX": "6",
-          "positionY": "8",
-          "direction": "upwards"
-        }
-      ]
-    },
-    {
-      "id": 254,
-      "name": "Files",
-      "time": "45",
-      "vehicles": []
-    },
-    {
-      "id": 998,
-      "name": "Resets123",
-      "time": "56",
-      "vehicles": []
+      "vehicles": [224]
     }
   ],
   "vehicles": [
@@ -80,6 +29,14 @@
       "positionX": "60",
       "positionY": "8",
       "direction": "downwards"
+    },
+    {
+      "id": 224,
+      "name": "test",
+      "speed": "4",
+      "positionX": "6",
+      "positionY": "8",
+      "direction": "upwards"
     }
   ]
 }

@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import "./allScenario.css";
 import DeleteAlert from "./DeleteAlert";
 import ScenarioItem from "./ScenarioItem";
 import "./scenarioStyles.css";
 import { toast } from "react-toastify";
 import axios from "axios";
+import ScenarioItemBtn from "./ScenarioItemBtn";
 
 function AllScenarios() {
   const [scenarios, setScenarios] = useState([]);
-  const [isRefresh, setIsRefresh] = useState(Math.random() * 100);
+  const [isRefresh, setIsRefresh] = useState(false);
   const appUrl = process.env.REACT_APP_APP_URL;
 
   useEffect(() => {
@@ -18,17 +18,18 @@ function AllScenarios() {
     });
   }, [isRefresh]);
 
-  // if(scenarios.length == 0) {
-  //     return (
-  //         <h2>No Data Available</h2>
-  //     )
-  // }
-
   const deleteAllHandler = () => {
-    let urls = scenarios.map((sc) => {
-      return `${appUrl}/scenarios/${sc.id}`;
-    });
+    let urls = [];
+    for (let i = 0; i < scenarios.length; i++) {
+      urls.push(`${appUrl}/scenarios/${scenarios[i].id}`);
+      scenarios[i].vehicles.forEach(v => {
+        urls.push(`${appUrl}/vehicles/${v}`);
+      });
+    }
+
     let deleteAllRequests = urls.map((url) => axios.delete(url));
+    // console.log(deleteAllRequests);
+
     axios.all(deleteAllRequests).then((responses) => {
       responses.forEach((resp) => {
         let msg = {
@@ -43,7 +44,7 @@ function AllScenarios() {
         position: toast.POSITION.TOP_CENTER,
         autoClose: 3000,
       });
-      setIsRefresh(Math.random() * 100);
+      setIsRefresh(!isRefresh);
     });
   };
   const confirmDelete = () => {
@@ -56,24 +57,18 @@ function AllScenarios() {
     );
   };
 
+  if(scenarios.length === 0) {
+    return (
+      <>
+        <ScenarioItemBtn cls = {'isInvisible'} delete = {null} clsTxt = {'isInvisible'} />
+        <h1>No data Available</h1>
+      </>
+    )
+  }
+
   return (
     <>
-      <div className="grid-container all-scenario-header">
-        <div className="grid-item">
-          <h2>All Scenarios</h2>
-        </div>
-        <div className="grid-item">
-          <Link className="button blue-btn" to="/addscenario">
-            New Scenario
-          </Link>
-          <Link className="button green-btn" to="/addvehiclesform">
-            Add Vehicles
-          </Link>
-          <div className="button orange-btn" onClick={confirmDelete}>
-            Delete All
-          </div>
-        </div>
-      </div>
+      <ScenarioItemBtn cls = {'button orange-btn'} delete = {confirmDelete} clsTxt = {''} />
 
       <div id="all-scenarios">
         <h1>All Scenarios</h1>
@@ -96,6 +91,7 @@ function AllScenarios() {
                   key={sc.id}
                   scenario={sc}
                   refresh={setIsRefresh}
+                  isRefresh = {isRefresh}
                 />
               );
             })}

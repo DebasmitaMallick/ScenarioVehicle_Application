@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./addScenario.css";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 function AddScenarioForm() {
   const [scenarioName, setScenarioName] = useState("");
@@ -17,8 +18,12 @@ function AddScenarioForm() {
         time: scenarioTime,
         vehicles: [],
       })
-      .then((response) => {
-        console.log(response.data);
+      .then(() => {
+        toast.success("Added Successfully", {
+          position: toast.POSITION.TOP_CENTER,
+          autoClose: 3000,
+        });
+        resetHandler();
       });
   };
 

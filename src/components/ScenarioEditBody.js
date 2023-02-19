@@ -1,8 +1,7 @@
-import React, {useState} from 'react'
+import React from 'react'
 
 function ScenarioEditBody(props) {
-    // const [name, setName] = useState(props.name);
-    // const [time, setTime] = useState(props.time);
+
   return (
     <form >
         <div className="grid-container"> 

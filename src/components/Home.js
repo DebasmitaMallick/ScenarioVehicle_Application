@@ -3,54 +3,50 @@ import axios from "axios";
 import VehicleItem from "./VehicleItem";
 import ScenarioDropdown from "./ScenarioDropdown";
 import "./scenarioStyles.css";
-import { toast } from "react-toastify";
-import DeleteAlert from "./DeleteAlert";
 
 function Home() {
   const [scenarios, setScenarios] = useState([]);
   const [scenario, setScenario] = useState("");
   const [vehicles, setVehicles] = useState([]);
   const appUrl = process.env.REACT_APP_APP_URL;
-  const [isRefresh, setIsRefresh] = useState(Math.random() * 100);
-
-  const confirmDelete = () => {
-    toast.warning(
-      <DeleteAlert
-        delete={deleteAllHandler}
-        message={"Are you sure you want to delete the scenarios?"}
-      />,
-      { position: toast.POSITION.TOP_CENTER, closeButton: false }
-    );
-  };
-
-  const deleteAllHandler = () => {
-    axios
-      .delete(`${appUrl}/scenarios`, {
-        params: {
-          id: 205,
-        },
-      })
-      .then((response) => {
-        toast.success("Deleted Successfully", {
-          position: toast.POSITION.TOP_CENTER,
-          autoClose: 3000,
-        });
-      });
-  };
+  const [isRefresh, setIsRefresh] = useState(false);
+  const [refreshRequireVehicles, setRefreshRequireVehicles] = useState(false);
+  const [requiredVehicles, setRequiredVehicles] = useState([]);
 
   useEffect(() => {
     axios.get(`${appUrl}/scenarios`).then((response) => {
       setScenarios(response.data);
     });
-  }, []);
+  }, [isRefresh]);
 
   useEffect(() => {
     axios.get(`${appUrl}/vehicles`).then((response) => {
-      setVehicles(response.data.vehicles);
+      setVehicles(response.data);
+      setRefreshRequireVehicles(!refreshRequireVehicles);
     });
-  }, [scenario]);
+  }, [isRefresh]);
 
-  if (!(Array.isArray(vehicles) && vehicles.length > 0)) {
+   
+  useEffect(() => {
+    if(vehicles != undefined && vehicles.length > 0 && scenario !== "") {
+      const filteredVehicles = vehicles.filter(item => {
+        return item.scenarioId.toString().includes(scenario)
+      })
+      setRequiredVehicles(filteredVehicles);
+    }
+
+  }, [scenario, refreshRequireVehicles]);
+  
+
+  if(scenario !== "" && requiredVehicles.length === 0) {
+    return (
+      <>
+        <ScenarioDropdown scenario = {scenario} scenarios={scenarios} setScenario={setScenario} />
+        <h2>No data available</h2>
+      </>
+    )
+  }
+  else if (scenario === "") {
     return <ScenarioDropdown scenario = {scenario} scenarios={scenarios} setScenario={setScenario} />;
   }
 
@@ -66,17 +62,19 @@ function Home() {
               <th>Position X</th>
               <th>Position Y</th>
               <th>Speed</th>
+              <th>Direction</th>
               <th>Edit</th>
               <th>Delete</th>
             </tr>
           </thead>
           <tbody>
-            {vehicles.map((vehicle) => {
+            {requiredVehicles.map((vehicle) => {
               return (
                 <VehicleItem
                   key={vehicle.id}
                   vehicle={vehicle}
-                  delete={confirmDelete}
+                  refresh={setIsRefresh}
+                  isRefresh={isRefresh}
                 />
               );
             })}

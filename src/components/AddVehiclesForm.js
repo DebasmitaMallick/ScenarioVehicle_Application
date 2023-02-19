@@ -7,7 +7,6 @@ import { toast } from "react-toastify";
 
 function AddVehiclesForm() {
   const location = useLocation();
-  // console.log(location.state);
   const [scenarios, setScenarios] = useState([]);
   const [scenario, setScenario] = useState(location.state ? location.state.id : '');
   const [vehicleName, setVehicleName] = useState('');
@@ -30,7 +29,8 @@ function AddVehiclesForm() {
         speed: speed,
         positionX: positionX,
         positionY: positionY,
-        direction: direction
+        direction: direction,
+        scenarioId: scenario
       })
       .then(() => {
         //update parent scenario
@@ -38,7 +38,6 @@ function AddVehiclesForm() {
           x = res.data.vehicles;
           x.push(vehicleId);
           const temp = x;
-          console.log(temp);
           axios
           .patch(`${appUrl}/scenarios/${scenario}`, {
               vehicles : temp
